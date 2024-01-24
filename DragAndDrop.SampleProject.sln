@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragAndDrop.SampleProject", "DragAndDrop.SampleProject\DragAndDrop.SampleProject.csproj", "{F81329DB-BC62-4C08-B3AF-A7A053152ED0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F81329DB-BC62-4C08-B3AF-A7A053152ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81329DB-BC62-4C08-B3AF-A7A053152ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81329DB-BC62-4C08-B3AF-A7A053152ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81329DB-BC62-4C08-B3AF-A7A053152ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A7C70A2-5E77-442F-923A-122915B51F36}
+	EndGlobalSection
+EndGlobal
