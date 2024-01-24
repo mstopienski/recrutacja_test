@@ -4,7 +4,7 @@
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #32293F;
 }
 
 .navbar-brand {
@@ -21,10 +21,11 @@
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    
 }
 
     .nav-item:first-of-type {
-        padding-top: 1rem;
+        padding-top: 3rem;
     }
 
     .nav-item:last-of-type {
@@ -32,37 +33,44 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
+        color: white;
         border-radius: 4px;
-        height: 3rem;
+        height: 55px;
+        width: 55px;
         display: flex;
         align-items: center;
-        line-height: 3rem;
+        line-height: 1rem;
     }
 
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+    .nav-item ::deep a.active {
+        background-color: white;
+        color: #193154 !important;
+    }
 
 .nav-item ::deep a:hover {
     background-color: rgba(255,255,255,0.1);
-    color: white;
+     color: #193154;
+}
+@media (max-width: 640.98px) {
+
+    .top-row {
+        height: 4.5rem !important;
+    }
 }
 
-@media (min-width: 641px) {
-    .navbar-toggler {
-        display: none;
-    }
+    @media (min-width: 641px) {
+        .navbar-toggler {
+            display: none;
+        }
 
-    .collapse {
-        /* Never collapse the sidebar for wide screens */
-        display: block;
+        .collapse {
+            /* Never collapse the sidebar for wide screens */
+            display: block;
+        }
+
+        .nav-scrollable {
+            /* Allow sidebar to scroll for tall menus */
+            height: calc(100vh - 3.5rem);
+            overflow-y: auto;
+        }
     }
-    
-    .nav-scrollable {
-        /* Allow sidebar to scroll for tall menus */
-        height: calc(100vh - 3.5rem);
-        overflow-y: auto;
-    }
-}

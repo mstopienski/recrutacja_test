@@ -1,19 +1,43 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-1 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">CoolApp</a>
+        <div class="logo">
+            <span class="material-symbols-outlined" style="font-size:34px">
+                google_home_devices
+            </span>
+        </div>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
 
+
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                <div style="text-align:center">
+                    <div style="margin-bottom:0px">
+                        <span class="material-symbols-outlined" style="font-size: 32px">grade</span>
+                    </div>
+                    <div style="position:relative; font-size: 65%;margin-top:0px">
+                        Zakladka&nbsp1
+                    </div>
+                </div>
             </NavLink>
-        </div>      
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/test">
+                <div style="text-align:center">
+                    <div style="margin-bottom:0px">
+                        <span class="material-symbols-outlined" style="font-size: 32px">grade</span>
+                    </div>
+                    <div style="position:relative; font-size: 65%;margin-top:0px">
+                        Zakladka&nbsp2
+                    </div>
+                </div>
+            </NavLink>
+        </div>
     </nav>
 </div>
 
