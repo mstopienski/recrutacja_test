@@ -49,24 +49,30 @@
 
     public void HandleEventMessage(UserModel usermodel, string newStatus)
     {
-        if (newStatus == HomePanel.Id)
+        if (usermodel.Identifier.Equals(newStatus))
         {
+            return;
+        }
+
+        if (newStatus == HomePanel.Id)
+        {     
+            var container = Containers.FirstOrDefault(x => x.Id == usermodel.Identifier);           
             EventMessages.Insert(0,
-                new EventModel()
-                    {
-                        Message = $"Użytkownik {usermodel.FirstName} {usermodel.LastName} został usunięty z Grupy {Containers.FirstOrDefault(x => x.Id == usermodel.Identifier).Name}",
-                        ContainerEventGraphicIndicator = Containers.FirstOrDefault(x => x.Id == usermodel.Identifier).Icon
-                    });
+            new EventModel()
+                {
+                    Message = $"Użytkownik {usermodel.FirstName} {usermodel.LastName} został usunięty z Grupy {container.Name}",
+                    ContainerEventGraphicIndicator = container.Icon
+                });                     
         }
         else
         {
             var container = Containers.FirstOrDefault(x => x.Id == newStatus);
             EventMessages.Insert(0,
-                new EventModel()
-                    {
-                        Message = $"Użytkownik {usermodel.FirstName} {usermodel.LastName} został przeniesiony do Grupy {container.Name}",
-                        ContainerEventGraphicIndicator = container.Icon
-                    });
+            new EventModel()
+                {
+                    Message = $"Użytkownik {usermodel.FirstName} {usermodel.LastName} został przeniesiony do Grupy {container.Name}",
+                    ContainerEventGraphicIndicator = container.Icon
+                });
         }
     }
 }
