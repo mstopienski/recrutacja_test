@@ -2,10 +2,10 @@
 
 
 <div class="pageContainer">
-        <CascadingValue Value="this">
-            @ChildContent
-        </CascadingValue>
-    </div>
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
 
 
 
@@ -31,19 +31,42 @@
 
     public async Task UpdateUserAsync(string newStatus)
     {
-        var users = Users.Where(x => Payload.Any(p=>p.Id == x.Id)).ToList();
+        var users = Users.Where(x => Payload.Any(p => p.Id == x.Id)).ToList();
         if (users.Any())
         {
             foreach (var user in users)
-            {               
-                user.Identifier = newStatus;                 
+            {
+                HandleEventMessage(user, newStatus);
+                user.Identifier = newStatus;
                 await OnStatusUpdated.InvokeAsync(user);
 
-            }       
+            }
 
             Payload.Clear();
             StateHasChanged();
         }
     }
 
+    public void HandleEventMessage(UserModel usermodel, string newStatus)
+    {
+        if (newStatus == HomePanel.Id)
+        {
+            EventMessages.Insert(0,
+                new EventModel()
+                    {
+                        Message = $"Użytkownik {usermodel.FirstName} {usermodel.LastName} został usunięty z Grupy {Containers.FirstOrDefault(x => x.Id == usermodel.Identifier).Name}",
+                        ContainerEventGraphicIndicator = Containers.FirstOrDefault(x => x.Id == usermodel.Identifier).Icon
+                    });
+        }
+        else
+        {
+            var container = Containers.FirstOrDefault(x => x.Id == newStatus);
+            EventMessages.Insert(0,
+                new EventModel()
+                    {
+                        Message = $"Użytkownik {usermodel.FirstName} {usermodel.LastName} został przeniesiony do Grupy {container.Name}",
+                        ContainerEventGraphicIndicator = container.Icon
+                    });
+        }
+    }
 }
