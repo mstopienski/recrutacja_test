@@ -3,6 +3,14 @@
 @inherits _ContainerTemplate
 
 <div class="panel" style="display:flex;flex-direction:column;width:40%">
+    <div style="height:100px;width:100%;padding: 10px;">
+        <div style="font-size:16px;color:white;float:left;font-weight:bold">Użytkownicy</div>
+        <div style="font-size:14px;color:white;float:right">
+            <span class="material-symbols-outlined">
+                more_vert
+            </span>
+        </div>
+    </div>
     <div class="dropzone @dropClass" style="height:60%;overflow-y:auto"
             ondragover="event.preventDefault();"
             ondragstart="event.dataTransfer.setData('', event.target.id);"
