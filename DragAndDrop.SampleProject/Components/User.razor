@@ -1,0 +1,52 @@
+﻿@using DragAndDrop.SampleProject.Model
+
+
+<div class="user draggable"  draggable="true" >
+    <div style="width:100%;height:20px;padding:5px">
+        <span class="material-symbols-outlined" style="font-size:16px">
+            @Container.Icon
+        </span>
+    </div>
+    <div style="text-align:center">
+        <div id="photo" style="text-align:center">            
+            <img style="border-radius: 50%;width:60px"  src="@UserModel.Photo" />
+        </div>
+        <div id="details" style="text-align:center; width:100%;font-size:14px;margin-top:10px">
+            @UserModel.FirstName<br />
+            @UserModel.LastName       
+        </div>
+       
+    </div>
+  
+    @{
+        string bkgcolor = ColorTheme == UserColorTheme.Odd ? "userItemOdd" : "userItemEven";
+        string iconColor = ColorTheme == UserColorTheme.Odd ? " #6BC79D" : "#2C2C2C";
+        string textcolor = ColorTheme == UserColorTheme.Odd ? "white" : "#2C2C2C";
+    }
+    <div class="userItem @bkgcolor">
+        <div>
+            <span style="font-size:14px;margin-right:5px;color:@iconColor" class="material-symbols-outlined">
+                location_on
+            </span>
+        </div>           
+        <div style="color:@textcolor">
+            @UserModel.City
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    PanelMain PanelMain { get; set; }
+
+    [Parameter]
+    public UserModel UserModel { get; set; }
+
+    [Parameter]
+    public UserColorTheme ColorTheme { get; set; }
+
+    [Parameter]
+    public ContainerBase Container { get; set; }
+
+   
+}

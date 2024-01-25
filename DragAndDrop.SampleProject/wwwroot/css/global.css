@@ -8,3 +8,58 @@
     align-items: center;
     background-color: #FFFFFF;
 }
+
+.user {
+    height: 180px;
+    width: 140px;
+    background-color: white;
+    color: black;
+    margin: 5px;
+    min-width: 140px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.panel {
+    background-image: linear-gradient(to bottom right,rgba(255,255,255,.3), rgba(255,0,0,0));
+    height: 90vh;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 400px;
+}
+
+@media (max-width: 640.98px) {
+    .panel {
+        min-width: 400px;
+    }
+
+    .pageContainer {
+        flex-direction: column;
+    }
+}
+
+.userItem {
+    color: white;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    border-radius: 0px 0px 10px 10px;
+    padding: 5px;
+    justify-content: center;
+    display: flex
+}
+
+.userItemEven {
+    background-color: #6BC79D;
+}
+
+.userItemOdd {
+    background-color: #2C2C2C;
+}

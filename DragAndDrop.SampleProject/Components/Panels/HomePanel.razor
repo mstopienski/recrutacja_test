@@ -1,0 +1,26 @@
+﻿@using DragAndDrop.SampleProject.Components.Templates
+@using DragAndDrop.SampleProject.Model
+@inherits _ContainerTemplate
+
+<div class="panel" style="display:flex;flex-direction:column;width:40%">
+    
+        @foreach (var user in base.Users)
+        {
+            UserColorTheme theme = EvaluateHighlightColor(user);
+            <User ColorTheme="@theme" UserModel="@user" Container="this.ParentPanel.HomePanel" />
+        }
+    </div>
+
+
+
+
+
+
+@code {
+
+    protected override void OnParametersSet()
+    {
+        base.Users.Clear();
+        base.Users.AddRange(this.ParentPanel.Users.Where(x => x.Identifier == this.ParentPanel.HomePanel.Id));
+    }
+}

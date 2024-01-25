@@ -1,0 +1,48 @@
+﻿@inject IJSRuntime JSRuntime;
+@using DragAndDrop.SampleProject.Model
+@using DragAndDrop.SampleProject.Services
+
+<div class="panel" style="width:60%">
+    <div style="height:5%;width:100%;min-height:50px;display:flex">
+        @foreach (var item in PanelMain.Containers)
+        {
+            string activeIndicator = activeGroup == item.Id ? "font-weight:bold" : "";
+            <button class="bButton" style="@activeIndicator" id="@item.Id" @onclick="()=>SwitchTab(item.Id)">
+                <div style="display:flex;line-height:1;justify-content:center">
+                    <span class="material-symbols-outlined" style="font-size:14px;margin-right:5px">
+                        @item.Icon
+                    </span>
+                    <div>
+                        Grupa @item.Name
+                    </div>
+                </div>
+                </button>
+        }    
+    </div>
+    @foreach (var item in PanelMain.Containers)
+    {
+        bool isVisible = activeGroup == item.Id;
+        <Container IsVisible="@isVisible" ContainerModel="@item" />
+    }
+</div>
+
+
+@code {
+    private string activeGroup; 
+
+    [CascadingParameter]
+    PanelMain PanelMain { get; set; }
+
+    protected override void OnInitialized()
+    {
+        activeGroup = PanelMain.Containers.First().Id;
+    }
+
+    private void SwitchTab(string tabIndex)
+    {
+        this.activeGroup = tabIndex;
+    }
+
+  
+
+}
