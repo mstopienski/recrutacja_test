@@ -1,0 +1,33 @@
+﻿@using DragAndDrop.SampleProject.Model
+
+
+<div class="pageContainer">
+        <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+
+
+
+@code {
+
+    [Parameter]
+    public List<UserModel> Users { get; set; }
+
+    [Parameter]
+    public List<ContainerBase> Containers { get; set; }
+
+    [Parameter]
+    public ContainerBase HomePanel { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public EventCallback<UserModel> OnStatusUpdated { get; set; }
+
+    public List<EventModel> EventMessages { get; set; } = new();
+
+ 
+
+    
+}

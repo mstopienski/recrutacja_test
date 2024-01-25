@@ -1,8 +1,34 @@
 ﻿@page "/"
+@using DragAndDrop.SampleProject.Components
+@using DragAndDrop.SampleProject.Components.Panels
+@using DragAndDrop.SampleProject.Model
+@using DragAndDrop.SampleProject.Services
 
-<PageTitle>Counter</PageTitle>
+<PanelMain HomePanel="@userPanel" Users="Users" Containers="GroupContainers">
+    <HomePanel/>
+    <ContainersPanel />
+</PanelMain>
 
+ 
 
 @code {
-   
+
+    private ContainerBase userPanel { get; set; }
+
+    List<UserModel> Users = new List<UserModel>();
+    List<ContainerBase> GroupContainers = new List<ContainerBase>();
+    protected override void OnInitialized()
+    {
+        userPanel = new ContainerBase()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "UserPanel",
+                Icon = "circle"
+            };
+        Users.AddRange(FakeDataSeeder.SeedUsers(userPanel.Id));
+        GroupContainers.AddRange(FakeDataSeeder.SeedGroups());
+  
+    }
 }
+
+

@@ -1,0 +1,19 @@
+﻿@using DragAndDrop.SampleProject.Model
+
+
+@code {
+
+    [CascadingParameter]
+    public PanelMain ParentPanel { get; set; }
+
+    public List<UserModel> Users = new List<UserModel>();
+
+    public string dropClass = "";
+
+    public UserColorTheme EvaluateHighlightColor(UserModel model)
+    {
+        return (Users.IndexOf(model) % 2 == 0) ? UserColorTheme.Odd : UserColorTheme.Even;
+    }
+
+ 
+}
