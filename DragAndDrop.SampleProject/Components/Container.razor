@@ -1,10 +1,25 @@
 ﻿@using DragAndDrop.SampleProject.Components.Templates
 @using DragAndDrop.SampleProject.Model
-
-
 @inherits _ContainerTemplate
 
-
+@{
+    var shouldShow = IsVisible ? "" : "none";
+    <div style="display:@shouldShow;width:100%;height:100%">
+       
+        <div class="dropzone @dropClass" style="height:95%;width:100%"
+            ondragover="event.preventDefault();"
+            ondragstart="event.dataTransfer.setData('', event.target.id);"
+             @ondrop="()=>HandleDrop(ContainerModel.Id)"
+            @ondragenter="HandleDragEnter"
+            @ondragleave="HandleDragLeave">
+            @foreach (var user in Users)
+            {
+                UserColorTheme theme = EvaluateHighlightColor(user);
+                <User ColorTheme="@theme" UserModel="@user" Container="ContainerModel" />
+            }
+        </div>
+    </div>
+}
 
 @code {
 
@@ -14,6 +29,9 @@
     [Parameter]
     public bool IsVisible { get; set; }
 
-  
+    protected override void OnParametersSet() {
+        base.Users.Clear();
+        base.Users.AddRange(ParentPanel.Users.Where(x => x.Identifier == this.ContainerModel.Id));
+    }
 
 }

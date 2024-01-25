@@ -1,7 +1,9 @@
 ﻿@using DragAndDrop.SampleProject.Model
 
-
-<div class="user draggable"  draggable="true" >
+@{
+    string markIndicator = IsMarkedForDrag ? "filter: brightness(50%)" : "";
+}
+<div class="user draggable" style="@markIndicator" draggable="true" @ondragstart="() => HandleDragStart()" @onclick="(e)=>HandleMarkStart(e)">
     <div style="width:100%;height:20px;padding:5px">
         <span class="material-symbols-outlined" style="font-size:16px">
             @Container.Icon
@@ -48,5 +50,34 @@
     [Parameter]
     public ContainerBase Container { get; set; }
 
+    public bool IsMarkedForDrag { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        IsMarkedForDrag = false;
+    }
+
+    private void HandleDragStart()
+    {
+        PanelMain.Payload.Add(UserModel);
+    }
+
    
+
+    private void HandleMarkStart(MouseEventArgs e)
+    {
+        if (e.ShiftKey)
+        {
+            if (IsMarkedForDrag)
+            {
+                PanelMain.Payload.Remove(UserModel);
+            }
+            else
+            {
+                PanelMain.Payload.Add(UserModel);
+            }
+
+            IsMarkedForDrag = !IsMarkedForDrag;
+        }        
+    }
 }

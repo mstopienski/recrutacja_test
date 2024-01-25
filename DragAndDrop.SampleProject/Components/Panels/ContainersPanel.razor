@@ -7,7 +7,7 @@
         @foreach (var item in PanelMain.Containers)
         {
             string activeIndicator = activeGroup == item.Id ? "font-weight:bold" : "";
-            <button class="bButton" style="@activeIndicator" id="@item.Id" @onclick="()=>SwitchTab(item.Id)">
+            <button class="bButton" style="@activeIndicator" id="@item.Id" @onclick="()=>SwitchTab(item.Id)" @ondragenter="()=>onhover(item.Id)">
                 <div style="display:flex;line-height:1;justify-content:center">
                     <span class="material-symbols-outlined" style="font-size:14px;margin-right:5px">
                         @item.Icon
@@ -43,6 +43,10 @@
         this.activeGroup = tabIndex;
     }
 
-  
+    private void onhover(string tabIndex)
+    {
+        this.activeGroup = tabIndex;
+        JSRuntime.InvokeVoidAsync("OnButtonHoverIn", tabIndex);
+    }
 
 }
