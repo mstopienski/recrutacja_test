@@ -27,7 +27,23 @@
 
     public List<EventModel> EventMessages { get; set; } = new();
 
- 
+    public List<UserModel> Payload { get; set; } = new();
 
-    
+    public async Task UpdateUserAsync(string newStatus)
+    {
+        var users = Users.Where(x => Payload.Any(p=>p.Id == x.Id)).ToList();
+        if (users.Any())
+        {
+            foreach (var user in users)
+            {               
+                user.Identifier = newStatus;                 
+                await OnStatusUpdated.InvokeAsync(user);
+
+            }       
+
+            Payload.Clear();
+            StateHasChanged();
+        }
+    }
+
 }

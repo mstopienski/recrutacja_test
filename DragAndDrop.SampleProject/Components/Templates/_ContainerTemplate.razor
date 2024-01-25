@@ -15,5 +15,17 @@
         return (Users.IndexOf(model) % 2 == 0) ? UserColorTheme.Odd : UserColorTheme.Even;
     }
 
- 
+    public void HandleDragEnter()
+    {
+        dropClass = "can-drop";
+    }
+    public void HandleDragLeave()
+    {
+        dropClass = "";
+    }
+    public async Task HandleDrop(string panelId)
+    {
+        dropClass = "";
+        await ParentPanel.UpdateUserAsync(panelId);
+    }
 }
