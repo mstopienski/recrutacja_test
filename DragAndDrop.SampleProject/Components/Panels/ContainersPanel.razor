@@ -1,13 +1,21 @@
 ﻿@inject IJSRuntime JSRuntime;
+@using DragAndDrop.SampleProject.Components.Templates
 @using DragAndDrop.SampleProject.Model
 @using DragAndDrop.SampleProject.Services
+@inherits _ContainerTemplate
 
 <div class="panel" style="width:60%">
     <div style="height:5%;width:100%;min-height:50px;display:flex">
         @foreach (var item in PanelMain.Containers)
         {
             string activeIndicator = activeGroup == item.Id ? "font-weight:bold" : "";
-            <button class="bButton" style="@activeIndicator" id="@item.Id" @onclick="()=>SwitchTab(item.Id)" @ondragenter="()=>onhover(item.Id)">
+            <button class="bButton" style="@activeIndicator" id="@item.Id"
+            @onclick="()=>SwitchTab(item.Id)"
+                @ondrop="()=>HandleDrop(item.Id)"              
+                    ondragover="event.preventDefault();"
+                    @ondragenter="()=>HandleDrag(item.Id)"
+                    @ondragleave="HandleDragLeave">
+                
                 <div style="display:flex;line-height:1;justify-content:center">
                     <span class="material-symbols-outlined" style="font-size:14px;margin-right:5px">
                         @item.Icon
@@ -43,10 +51,9 @@
         this.activeGroup = tabIndex;
     }
 
-    private void onhover(string tabIndex)
+    public void HandleDrag(string tabIndex)
     {
+        base.HandleDragEnter();
         this.activeGroup = tabIndex;
-        JSRuntime.InvokeVoidAsync("OnButtonHoverIn", tabIndex);
     }
-
 }
