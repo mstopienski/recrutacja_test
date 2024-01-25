@@ -1,0 +1,14 @@
+﻿@using DragAndDrop.SampleProject.Model
+<div class="eventEntry">
+        <span class="material-symbols-outlined" style="font-size:14px;margin-right:5px">
+            @EventModel.ContainerEventGraphicIndicator
+        </span>
+        <div>
+        @EventModel.Message
+        </div>    
+   </div>
+
+@code {
+    [Parameter]
+    public EventModel EventModel { get; set; }
+}
