@@ -61,10 +61,16 @@
     border: solid transparent;
     border-radius: 0px 0px 5px 5px;
     height: 32px;
-    width: 150px;   
+    width: 200px;   
     text-decoration: none;
 }
+    .bButton:first-child {
+        border-radius: 5px 0px 5px 5px;
+    }
 
+    .bButton:last-child {
+        border-radius: 0px 5px 5px 5px;
+    }
 
 
 @keyframes bounce {

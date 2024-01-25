@@ -5,7 +5,7 @@
 @inherits _ContainerTemplate
 
 <div class="panel" style="width:60%">
-    <div style="height:5%;width:100%;min-height:50px;display:flex">
+    <div style="height:30px;width:100%;display:flex">
         @foreach (var item in PanelMain.Containers)
         {
             string activeIndicator = activeGroup == item.Id ? "font-weight:bold" : "";
