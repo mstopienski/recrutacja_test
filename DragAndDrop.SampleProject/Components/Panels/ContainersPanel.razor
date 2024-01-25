@@ -13,10 +13,10 @@
             @onclick="()=>SwitchTab(item.Id)"
                 @ondrop="()=>HandleDrop(item.Id)"              
                     ondragover="event.preventDefault();"
-                    @ondragenter="()=>HandleDrag(item.Id)"
+                    @ondragenter="()=>HandleDragIn(item.Id)"
                     @ondragleave="HandleDragLeave">
-                
-                <div style="display:flex;line-height:1;justify-content:center">
+
+                <div style="display:flex;line-height:1;justify-content:center;height:100%;width:100%;padding:5px;position: relative;">
                     <span class="material-symbols-outlined" style="font-size:14px;margin-right:5px">
                         @item.Icon
                     </span>
@@ -46,14 +46,19 @@
         activeGroup = PanelMain.Containers.First().Id;
     }
 
-    private void SwitchTab(string tabIndex)
+    private async Task SwitchTab(string tabIndex)
     {
+        await JSRuntime.InvokeVoidAsync("OnButtonHoverIn", tabIndex);
         this.activeGroup = tabIndex;
     }
 
-    public void HandleDrag(string tabIndex)
+   
+
+    public void HandleDragIn(string tabIndex)
     {
+        JSRuntime.InvokeVoidAsync("OnButtonHoverIn", tabIndex);
         base.HandleDragEnter();
         this.activeGroup = tabIndex;
+    
     }
 }
