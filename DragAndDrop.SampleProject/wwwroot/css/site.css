@@ -68,21 +68,20 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
-/* Track */
+
+::-webkit-scrollbar {
+    width: 6px !important; /* width of the scrollbar */
+}
+
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px grey;
+    background: rgb(255,255,255,.3); /* color of the track */
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: white !important;
-    border-radius: 2px !important;
-    border: none !important;
-    box-shadow: inset 0px 0px 5px black !important;
+    background: white !important; /* color of the thumb */
 }
 
-    /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: white !important;
-        box-shadow: inset 0px 0px 10px black !important;
+        background: #555; /* color of the thumb on hover */
     }
+
